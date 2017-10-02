@@ -17,27 +17,32 @@ class EightPuzzleState(State):
 
     #initializes the eight puzzle with the configuration passed in parameter (numbers)
     def __init__(self, numbers):
+        print("test")
        # TO COMPLETE
 
 
 
     #returns a boolean value that indicates if the current configuration is the same as the goal configuration
     def isGoal(self):
+        print("test")
         # TO COMPLETE
 
 
     # returns the set of legal actions in the current state
     def possibleActions(self):
+        print("test")
          # TO COMPLETE
 
 
     # applies the result of the move on the current state
     def executeAction(self, move):
+        print("test")
         # TO COMPLETE
 
 
     # returns true if the current state is the same as other, false otherwise
     def equals(self, other):
+        print("test")
     # TO COMPLETE
 
 
@@ -50,10 +55,12 @@ class EightPuzzleState(State):
         # | 6 | 7 | 8 |
         # -----------
     def show(self):
+        print("test")
     # TO COMPLETE
 
     # returns the cost of the action in parameter
     def cost(self, action):
+        print("test")
     # TO COMPLETE
 
     # returns the value of the heuristic for the current state
@@ -66,12 +73,14 @@ class EightPuzzleState(State):
     ## returns the value of your first heuristic for the current state
     # make sure to explain it clearly in your comment
     def heuristic1(self):
+        print("test")
         # TO COMPLETE
 
 
     # returns the value of your first heuristic for the current state
     # make sure to explain it clearly in your comment
     def heuristic2(self, matrix, goal):
+        print("test")
         # TO COMPLETE
 
 
@@ -126,20 +135,25 @@ puzzle.show()
 if not issolvable(puzzle_choice):
     print("NOT SOLVABLE")
 else:
-    start = timeit.default_timer()
-    solution, nbvisited = breadthfirst_search(puzzle)
-    stop = timeit.default_timer()
-    printResults('BFS', solution, start, stop, nbvisited)
+    #---added
+    print("SOLVABLE")
+    #---end added
 
 
-    start = timeit.default_timer()
-    solution, nbvisited = depthfirst_search(puzzle)
-    stop = timeit.default_timer()
-    printResults('DFS', solution, start, stop, nbvisited)
-
-    start = timeit.default_timer()
-    solution, nbvisited = astar_search(puzzle)
-    stop = timeit.default_timer()
-    printResults('A*', solution, start, stop, nbvisited)
+    # start = timeit.default_timer()
+    # solution, nbvisited = breadthfirst_search(puzzle)
+    # stop = timeit.default_timer()
+    # printResults('BFS', solution, start, stop, nbvisited)
+    #
+    #
+    # start = timeit.default_timer()
+    # solution, nbvisited = depthfirst_search(puzzle)
+    # stop = timeit.default_timer()
+    # printResults('DFS', solution, start, stop, nbvisited)
+    #
+    # start = timeit.default_timer()
+    # solution, nbvisited = astar_search(puzzle)
+    # stop = timeit.default_timer()
+    # printResults('A*', solution, start, stop, nbvisited)
 
 
