@@ -83,8 +83,8 @@ class EightPuzzleState(State):
 
     # returns the cost of the action in parameter
     def cost(self, action):
-        print("test")
-    # TO COMPLETE
+        return 1 #??the cost should always be one here?
+
 
     # returns the value of the heuristic for the current state
     # note that you can alternatively call heuristic1() and heuristic2() to test both heuristics with A*

@@ -5,6 +5,13 @@ from searchdir.util import *
 ## It must return the solution node and the number of visited nodes
 def breadthfirst_search(initialState):
     print('BFS------------------------------')
+    node = Node(initialState.state)
+    if initialState.isGoal():
+        return node
+    frontier = Queue().enqueue(node)
+    explored = []
+
+
 
 
 
