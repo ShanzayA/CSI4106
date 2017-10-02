@@ -17,33 +17,47 @@ class EightPuzzleState(State):
 
     #initializes the eight puzzle with the configuration passed in parameter (numbers)
     def __init__(self, numbers):
-        print("test")
-       # TO COMPLETE
-
+        self.state = numbers
 
 
     #returns a boolean value that indicates if the current configuration is the same as the goal configuration
     def isGoal(self):
-        print("test")
-        # TO COMPLETE
+        return self.state == [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 
     # returns the set of legal actions in the current state
     def possibleActions(self):
-        print("test")
-         # TO COMPLETE
+        possibleactions = []
+        #depending on where the blank node is, return the possible actions
+        if self.state.index(0) < 6:
+            possibleactions.append('down')
+        if self.state.index(0) > 2:
+            possibleactions.append('up')
+        if self.state.index(0) not in (2,5,8):
+            possibleactions.append('right')
+        if self.state.index(0) not in (0,3,6):
+            possibleactions.append('left')
+        return possibleactions
 
 
     # applies the result of the move on the current state
     def executeAction(self, move):
-        print("test")
-        # TO COMPLETE
+        blankIndex = self.state.index(0) #index of the blank node
+
+        # switch the values of the blank node and the node of its direction
+        if move == 'down':
+            self.state[blankIndex], self.state[blankIndex + 3] = self.state[blankIndex + 3], self.state[blankIndex]
+        if move == 'up':
+            self.state[blankIndex], self.state[blankIndex - 3] = self.state[blankIndex - 3], self.state[blankIndex]
+        if move == 'right':
+            self.state[blankIndex], self.state[blankIndex + 1] = self.state[blankIndex + 1], self.state[blankIndex]
+        if move == 'left':
+            self.state[blankIndex], self.state[blankIndex - 1] = self.state[blankIndex - 1], self.state[blankIndex]
 
 
     # returns true if the current state is the same as other, false otherwise
     def equals(self, other):
-        print("test")
-    # TO COMPLETE
+        return self.state == other
 
 
     # prints the grid representing the current state
@@ -55,8 +69,17 @@ class EightPuzzleState(State):
         # | 6 | 7 | 8 |
         # -----------
     def show(self):
-        print("test")
-    # TO COMPLETE
+        print("-----------")
+        for index, number in enumerate(self.state):
+            if number != 0:
+                print("|", number, end=" ")
+            else:
+                print("|", " ", end=" ")
+            if index in (2, 5, 8):
+                #print a next line if at end of line
+                print("|")
+                print("-----------")
+
 
     # returns the cost of the action in parameter
     def cost(self, action):
@@ -135,9 +158,9 @@ puzzle.show()
 if not issolvable(puzzle_choice):
     print("NOT SOLVABLE")
 else:
-    #---added
+    #---added (to delete)
     print("SOLVABLE")
-    #---end added
+    #---end added (to delete)
 
 
     # start = timeit.default_timer()
