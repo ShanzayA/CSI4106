@@ -47,12 +47,14 @@ class EightPuzzleState(State):
         # switch the values of the blank node and the node of its direction
         if move == 'down':
             self.state[blankIndex], self.state[blankIndex + 3] = self.state[blankIndex + 3], self.state[blankIndex]
-        if move == 'up':
+        elif move == 'up':
             self.state[blankIndex], self.state[blankIndex - 3] = self.state[blankIndex - 3], self.state[blankIndex]
-        if move == 'right':
+        elif move == 'right':
             self.state[blankIndex], self.state[blankIndex + 1] = self.state[blankIndex + 1], self.state[blankIndex]
-        if move == 'left':
+        elif move == 'left':
             self.state[blankIndex], self.state[blankIndex - 1] = self.state[blankIndex - 1], self.state[blankIndex]
+        # if move == None: #unnecessary?
+        #     pass
 
 
     # returns true if the current state is the same as other, false otherwise
@@ -89,7 +91,8 @@ class EightPuzzleState(State):
     # returns the value of the heuristic for the current state
     # note that you can alternatively call heuristic1() and heuristic2() to test both heuristics with A*
     def heuristic(self):
-        return self.heuristic1()
+        return 0
+        # return self.heuristic1()
         # return self.heuristic2()
 
 
@@ -163,11 +166,11 @@ else:
     #---end added (to delete)
 
 
-    # start = timeit.default_timer()
-    # solution, nbvisited = breadthfirst_search(puzzle)
-    # stop = timeit.default_timer()
-    # printResults('BFS', solution, start, stop, nbvisited)
-    #
+    start = timeit.default_timer()
+    solution, nbvisited = breadthfirst_search(puzzle)
+    stop = timeit.default_timer()
+    printResults('BFS', solution, start, stop, nbvisited)
+
     #
     # start = timeit.default_timer()
     # solution, nbvisited = depthfirst_search(puzzle)

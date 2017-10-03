@@ -28,7 +28,9 @@ class Queue:
 
     # removes an element from the current data structure
     def dequeue(self):
+        first = self.q[0]
         self.q = self.q[1:]
+        return first
 
     # returns the size of the current data structure (the number of elements)
     def size(self):
