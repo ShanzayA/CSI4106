@@ -161,9 +161,6 @@ puzzle.show()
 if not issolvable(puzzle_choice):
     print("NOT SOLVABLE")
 else:
-    #---added (to delete)
-    print("SOLVABLE")
-    #---end added (to delete)
 
 
     start = timeit.default_timer()
