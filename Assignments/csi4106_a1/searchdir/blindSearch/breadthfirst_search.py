@@ -5,25 +5,38 @@ from searchdir.util import *
 ## It must return the solution node and the number of visited nodes
 def breadthfirst_search(initialState):
     print('BFS------------------------------')
+
+    #Create a start node from the given problem's initial state.
     node = Node(initialState)
+
+    #Check this node is not already the goal and return it if yes.
     if node.state.isGoal():
-        return node.extractSolutionAndDepth()
+        return node, 0
+
+    #Create a frontier queue that will hold the successor nodes.
+    #Add the start node to the frontier to start exploring.
+    #Create an empty list to hold the closed nodes (already explored nodes).
     frontier = Queue()
     frontier.enqueue(node)
     explored = []
+
+    #Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
     while True:
         if frontier.isEmpty():
             return node, len(explored)
+        #Make the current node the first in line from the frontier queue. (Will be the shallowest node).
+        #Add it to the closed list.
         node = frontier.dequeue()
         explored.append(node.state)
 
-        #Check the possible child nodes (in other words, the child state is a successor or the possible future states)
+        #Generate the successor nodes (possible states from possible actions from current node).
         for child in node.expand():
-            #Check child state is not in the frontier already (since we want min depth), nor has it already been explored
+            #Check if each successor node is not already in the frontier (since we want min depth),
+            #nor in the already explored (closed nodes) list to prevent endless loops.
             if not any(st.state.state == child.state.state for st in frontier.q) and child.state not in explored:
                 if child.state.isGoal():
                     return child, len(explored)
-                #if the child is not the goal, add to frontier
+                #If the successor was not the goal, add it to the frontier to possibly explore later.
                 frontier.enqueue(child)
 
 
