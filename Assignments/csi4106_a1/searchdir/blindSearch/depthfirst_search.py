@@ -19,18 +19,19 @@ def depthfirst_search(initialState):
     try:
         # Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
         while not frontier.isEmpty():
+            # Make the current node the next one on the same path,
+            # or if reached the end, the node on the next branch
             node = frontier.pop()
             if node.state.isGoal():
                 return node, len(explored)
             else:
                 explored.append(node.state)
-
                 # Generate the successor nodes (possible states from possible actions from current node).
                 for child in node.expand():
-                    if not any(st.state.state == child.state.state for st in frontier.s) and child.state not in explored:
+                    if child.state not in explored:
                         frontier.push(child)
     except MemoryError:
         print("Out of memory. Could not continue")
 
-    #If nothing more in frontier: could not find solution
-    return False
+    # Could not find solution. (Left loop because no more successors)
+    return False, -1
