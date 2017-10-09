@@ -24,7 +24,8 @@ def breadthfirst_search(initialState):
         #Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
         while True:
             if frontier.isEmpty():
-                return node, len(explored)
+                #Could not find solution
+                return False
             #Make the current node the first in line from the frontier queue. (Will be the shallowest node).
             #Add it to the closed list.
             node = frontier.dequeue()
