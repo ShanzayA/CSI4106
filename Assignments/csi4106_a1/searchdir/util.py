@@ -38,7 +38,7 @@ class Queue:
     def __contains__(self, item):
         return item in self.q
 
-#***********Is it okay to use heapq to implement? Or are we to implement it from scratch
+#**Is it okay to use heapq to implement? Or are we to implement it from scratch
 #Priority Queue Implementation of the data structure PriorityQueue
 class PriorityQueue:
     # initializes the data structure
@@ -74,38 +74,33 @@ class PriorityQueue:
 class Stack:
     # initializes the data structure
     def __init__(self):
-        print("test")
-    # TO COMPLETE
+        self.s = []
 
     # returns the elements of the current data structure
     def show(self):
-        print("test")
-    # TO COMPLETE
+        return self.s
 
     # returns a boolean indicating whether the current data structure is empty or not
     def isEmpty(self):
-        print("test")
-    # TO COMPLETE
+        return self.s == []
 
     # add the element item to the current data structure
     def push(self, item):
-        print("test")
-    # TO COMPLETE
+        self.s.insert(0, item)
 
     # removes an element from the current data structure
     def pop(self):
-        print("test")
-    # TO COMPLETE
+        first = self.s[0]
+        self.s = self.s[1:]
+        return first
 
     # returns the size of the current data structure (the number of elements)
     def size(self):
-        print("test")
-    # TO COMPLETE
+        return len(self.s)
 
     # returns a boolean value that indicates if the element item is contained in the current data structure
     def __contains__(self, item):
-        print("test")
-    # TO COMPLETE
+        return item in self.s
 
 
 #Prints results for search alorithms
