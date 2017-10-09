@@ -20,24 +20,27 @@ def breadthfirst_search(initialState):
     frontier.enqueue(node)
     explored = []
 
-    #Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
-    while True:
-        if frontier.isEmpty():
-            return node, len(explored)
-        #Make the current node the first in line from the frontier queue. (Will be the shallowest node).
-        #Add it to the closed list.
-        node = frontier.dequeue()
-        explored.append(node.state)
+    try:
+        #Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
+        while True:
+            if frontier.isEmpty():
+                return node, len(explored)
+            #Make the current node the first in line from the frontier queue. (Will be the shallowest node).
+            #Add it to the closed list.
+            node = frontier.dequeue()
+            explored.append(node.state)
 
-        #Generate the successor nodes (possible states from possible actions from current node).
-        for child in node.expand():
-            #Check if each successor node is not already in the frontier (since we want min depth),
-            #nor in the already explored (closed nodes) list to prevent endless loops.
-            if not any(st.state.state == child.state.state for st in frontier.q) and child.state not in explored:
-                if child.state.isGoal():
-                    return child, len(explored)
-                #If the successor was not the goal, add it to the frontier to possibly explore later.
-                frontier.enqueue(child)
+            #Generate the successor nodes (possible states from possible actions from current node).
+            for child in node.expand():
+                #Check if each successor node is not already in the frontier (since we want min depth),
+                #nor in the already explored (closed nodes) list to prevent endless loops.
+                if not any(st.state.state == child.state.state for st in frontier.q) and child.state not in explored:
+                    if child.state.isGoal():
+                        return child, len(explored)
+                    #If the successor was not the goal, add it to the frontier to possibly explore later.
+                    frontier.enqueue(child)
+    except MemoryError:
+        print("Out of memory. Could not continue")
 
 
 

@@ -4,6 +4,7 @@
 ###habdi.cnlp@gmail.com
 
 from operator import attrgetter
+import heapq #Used to implement Priority Queue so that pushing will be done in logn time (binary search tree format of storing)
 
 #Queue - Implementation of the data structure Queue
 class Queue:
@@ -17,10 +18,7 @@ class Queue:
 
     # returns a boolean indicating whether the current data structure is empty or not
     def isEmpty(self):
-        if self.q == []:
-            return True
-        else:
-            return False
+        return self.q == []
 
     # add the element item to the current data structure
     def enqueue(self, item):
@@ -40,43 +38,37 @@ class Queue:
     def __contains__(self, item):
         return item in self.q
 
-
+#***********Is it okay to use heapq to implement? Or are we to implement it from scratch
 #Priority Queue Implementation of the data structure PriorityQueue
 class PriorityQueue:
     # initializes the data structure
     def __init__(self, fct):
-        print("test")
-    # TO COMPLETE
+        #********* what is fct?
+        self.q = []
 
     # returns the elements of the current data structure
     def show(self):
-        print("test")
-    # TO COMPLETE
+        return self.q
 
     # returns a boolean indicating whether the current data structure is empty or not
     def isEmpty(self):
-        print("test")
-    # TO COMPLETE
+        return self.q == []
 
     # add the element item to the current data structure
     def enqueue(self, item):
-        print("test")
-    # TO COMPLETE
+        heapq.heappush(self.q, item)
 
     # removes an element from the current data structure
     def dequeue(self):
-        print("test")
-    # TO COMPLETE
+        return heapq.heappop(self.q)
 
     # returns the size of the current data structure (the number of elements)
     def size(self):
-        print("test")
-    # TO COMPLETE
+        return len(self.q)
 
     # returns a boolean value that indicates if the element item is contained in the current data structure
     def __contains__(self, item):
-        print("test")
-    # TO COMPLETE
+        return any(item in i for i in self.q)
 
 #Stack - Implementation of the data structure Stack
 class Stack:
