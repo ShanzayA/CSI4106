@@ -38,12 +38,13 @@ class Queue:
     def __contains__(self, item):
         return item in self.q
 
+#********** Need to reimplement to pass sorting function on initialization
 #**Is it okay to use heapq to implement? Or are we to implement it from scratch
 #Priority Queue Implementation of the data structure PriorityQueue
 class PriorityQueue:
     # initializes the data structure
     def __init__(self, fct):
-        #********* what is fct?
+        #********* need to reimplement to pass sorting function
         self.q = []
 
     # returns the elements of the current data structure
