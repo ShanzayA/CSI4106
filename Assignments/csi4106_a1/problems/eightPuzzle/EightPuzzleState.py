@@ -185,12 +185,12 @@ else:
     solution, nbvisited = breadthfirst_search(puzzle)
     stop = timeit.default_timer()
     printResults('BFS', solution, start, stop, nbvisited)
-
+    #
     # start = timeit.default_timer()
     # solution, nbvisited = depthfirst_search(puzzle)
     # stop = timeit.default_timer()
     # printResults('DFS', solution, start, stop, nbvisited)
-    
+
     start = timeit.default_timer()
     solution, nbvisited = astar_search(puzzle)
     stop = timeit.default_timer()

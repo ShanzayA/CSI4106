@@ -98,13 +98,11 @@ class Stack:
 
     # add the element item to the current data structure
     def push(self, item):
-        self.s.insert(0, item)
+        self.s.append(item)
 
     # removes an element from the current data structure
     def pop(self):
-        first = self.s[0]
-        self.s = self.s[1:]
-        return first
+        return self.s.pop()
 
     # returns the size of the current data structure (the number of elements)
     def size(self):
