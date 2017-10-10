@@ -24,12 +24,11 @@ def depthfirst_search(initialState):
             node = frontier.pop()
             if node.state.isGoal():
                 return node, len(explored)
-            else:
-                explored.append(node.state)
-                # Generate the successor nodes (possible states from possible actions from current node).
-                for child in node.expand():
-                    if child.state not in explored:
-                        frontier.push(child)
+            explored.append(node.state)
+            # Generate the successor nodes (possible states from possible actions from current node).
+            for child in node.expand():
+                if child.state not in explored:
+                    frontier.push(child)
     except MemoryError:
         print("Out of memory. Could not continue")
 

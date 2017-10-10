@@ -64,6 +64,8 @@ class Node(object):
     def getcost(self):
         return self.g;
 
+    def __lt__(self, other):
+        return self.f < other.f
 
     ####################
     # Private methods

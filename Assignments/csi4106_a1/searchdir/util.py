@@ -4,7 +4,7 @@
 ###habdi.cnlp@gmail.com
 
 from operator import attrgetter
-import heapq #Used to implement Priority Queue so that pushing will be done in logn time (binary search tree format of storing)
+import heapq
 
 #Queue - Implementation of the data structure Queue
 class Queue:
@@ -38,14 +38,14 @@ class Queue:
     def __contains__(self, item):
         return item in self.q
 
-#********** Need to reimplement to pass sorting function on initialization
+
 #**Is it okay to use heapq to implement? Or are we to implement it from scratch
 #Priority Queue Implementation of the data structure PriorityQueue
 class PriorityQueue:
     # initializes the data structure
     def __init__(self, fct):
-        #********* need to reimplement to pass sorting function
         self.q = []
+        self.priority = fct
 
     # returns the elements of the current data structure
     def show(self):
@@ -57,11 +57,22 @@ class PriorityQueue:
 
     # add the element item to the current data structure
     def enqueue(self, item):
-        heapq.heappush(self.q, item)
+        self.q.append(item)
+
+        # heap sort implemented with heapq (is this okay?), so that it will be done in O(logn)
+        heap = []
+        for node in self.q:
+            heapq.heappush(heap, (self.priority(node), node))
+        sorted = []
+        for i in range(len(heap)):
+            sorted.append(heapq.heappop(heap)[1])
+        self.q = sorted
 
     # removes an element from the current data structure
     def dequeue(self):
-        return heapq.heappop(self.q)
+        first = self.q[0]
+        self.q = self.q[1:]
+        return first
 
     # returns the size of the current data structure (the number of elements)
     def size(self):
@@ -69,7 +80,7 @@ class PriorityQueue:
 
     # returns a boolean value that indicates if the element item is contained in the current data structure
     def __contains__(self, item):
-        return any(item in i for i in self.q)
+        return item in self.q
 
 #Stack - Implementation of the data structure Stack
 class Stack:
