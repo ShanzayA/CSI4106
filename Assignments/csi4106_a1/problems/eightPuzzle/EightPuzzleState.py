@@ -7,6 +7,7 @@ import timeit
 
 import numpy as np
 import random
+import math
 from searchdir.blindSearch.breadthfirst_search import *
 from searchdir.blindSearch.depthfirst_search import *
 from searchdir.heuristicSearch.astar_search import *
@@ -91,21 +92,27 @@ class EightPuzzleState(State):
     # returns the value of the heuristic for the current state
     # note that you can alternatively call heuristic1() and heuristic2() to test both heuristics with A*
     def heuristic(self):
-        #return 0
-        # return self.heuristic1()
-
         # Matrix is the (x,y) position values at each 0-8 position within the list.
         # The (x,y) position could also be calculated inside the heuristic function based on the position within the list.
         matrix = [(0,2), (1,2), (2,2), (0,1), (1,1), (2,1), (0,0), (1,0), (2,0)]
-        return self.heuristic2(matrix, [0, 1, 2, 3, 4, 5, 6, 7, 8])
+        goal = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        #return self.heuristic1(matrix, goal)
+        return self.heuristic2(matrix, goal)
 
 
     ## returns the value of your first heuristic for the current state
     # make sure to explain it clearly in your comment
-    def heuristic1(self):
-        print("test")
-        #TO COMPLETE
-
+    def heuristic1(self, matrix, goal):
+        #Straight line distance. Could have also tried misplaced tiles, but straight line is a closer heuristic
+        distance = 0
+        # For each element in the list, get the (x,y) position of it provided in matrix.
+        # Then get the (x,y) position of where the current tile should be at goal.
+        # Use these two positions to get the straight line distance. Add all these distance to get a total distance.
+        for i in range(9):
+            tilePosition = matrix[i]
+            goalPosition = matrix[goal.index(self.state[i])]
+            distance += math.sqrt(pow(tilePosition[0] - goalPosition[0], 2) + pow(tilePosition[1] - goalPosition[1], 2))
+        return distance
 
     # returns the value of your first heuristic for the current state
     # make sure to explain it clearly in your comment
@@ -165,7 +172,7 @@ EIGHT_PUZZLE_DATA = [[0, 1, 2, 3, 4, 5, 6, 7, 8],
                      [1, 2, 5, 7, 6, 8, 0, 4, 3],
                      [4, 6, 0, 7, 2, 8, 3, 1, 5]]
 
-puzzle_choice = EIGHT_PUZZLE_DATA[3]
+puzzle_choice = EIGHT_PUZZLE_DATA[6]
 puzzle = EightPuzzleState(puzzle_choice)
 #puzzle, puzzle_choice = randomize(puzzle)
 print('Initial Config')
