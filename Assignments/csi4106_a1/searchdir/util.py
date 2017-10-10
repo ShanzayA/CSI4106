@@ -131,3 +131,10 @@ def printResults(alg, solution, start, stop, nbvisited):
         print("No solution")
     except MemoryError:
         print("Memory Error!")
+
+def printSolutionVisual(puzzle, solution):
+    sol = solution.extractSolution()
+    puzzle.show()
+    for step in sol:
+        puzzle.executeAction(step)
+        puzzle.show()

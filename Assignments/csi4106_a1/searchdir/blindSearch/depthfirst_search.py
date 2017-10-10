@@ -16,7 +16,7 @@ def depthfirst_search(initialState):
     frontier.push(node)
     explored = []
 
-    try: #**To move this try inside, when adding to frontier
+    try: 
         # Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
         while not frontier.isEmpty():
             # Make the current node the next one on the same path,
