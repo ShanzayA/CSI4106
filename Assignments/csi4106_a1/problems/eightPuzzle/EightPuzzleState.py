@@ -60,7 +60,7 @@ class EightPuzzleState(State):
 
     # returns true if the current state is the same as other, false otherwise
     def equals(self, other):
-        return self.state == other
+        return self.state == other.state
 
 
     # prints the grid representing the current state
@@ -107,7 +107,7 @@ class EightPuzzleState(State):
         distance = 0
         # For each element in the list, get the (x,y) position of it provided in matrix.
         # Then get the (x,y) position of where the current tile should be at goal.
-        # Use these two positions to get the straight line distance. Add all these distance to get a total distance.
+        # Use these two positions to get the straight line distance. Add all these distances to get a total distance.
         for i in range(9):
             tilePosition = matrix[i]
             goalPosition = matrix[goal.index(self.state[i])]
@@ -121,7 +121,7 @@ class EightPuzzleState(State):
         distance = 0
         #For each element in the list, get the (x,y) position of it provided in matrix.
         #Then get the (x,y) position of where the current tile should be at goal.
-        #Use these two positions to get the Manhatten distance. Add all these distance to get a total distance.
+        #Use these two positions to get the Manhatten distance. Add all these distances to get a total distance.
         for i in range(9):
             tilePosition = matrix[i]
             goalPosition = matrix[goal.index(self.state[i])]
@@ -185,17 +185,17 @@ else:
     solution, nbvisited = breadthfirst_search(puzzle)
     stop = timeit.default_timer()
     printResults('BFS', solution, start, stop, nbvisited)
-    #
-    # start = timeit.default_timer()
-    # solution, nbvisited = depthfirst_search(puzzle)
-    # stop = timeit.default_timer()
-    # printResults('DFS', solution, start, stop, nbvisited)
+
+    start = timeit.default_timer()
+    solution, nbvisited = depthfirst_search(puzzle)
+    stop = timeit.default_timer()
+    printResults('DFS', solution, start, stop, nbvisited)
 
     start = timeit.default_timer()
     solution, nbvisited = astar_search(puzzle)
     stop = timeit.default_timer()
     printResults('A*', solution, start, stop, nbvisited)
 
-    # Uncomment to print visual of solution
+    # Uncomment to print visual of solution. (Called here uses solution from A*)
     # printSolutionVisual(puzzle, solution)
 

@@ -4,6 +4,7 @@
 ###habdi.cnlp@gmail.com
 
 from operator import attrgetter
+from collections import deque
 import heapq
 
 #Queue - Implementation of the data structure Queue
@@ -86,7 +87,10 @@ class PriorityQueue:
 class Stack:
     # initializes the data structure
     def __init__(self):
-        self.s = []
+        #self.s = []
+        # Using deque instead of list to implement since it has higher performance when appending O(1) vs O(n).
+        # In fact this could be used for the other data structures as well.
+        self.s = deque()
 
     # returns the elements of the current data structure
     def show(self):
@@ -94,7 +98,8 @@ class Stack:
 
     # returns a boolean indicating whether the current data structure is empty or not
     def isEmpty(self):
-        return self.s == []
+        #return self.s == []
+        return len(self.s) == 0
 
     # add the element item to the current data structure
     def push(self, item):
@@ -130,6 +135,7 @@ def printResults(alg, solution, start, stop, nbvisited):
     except MemoryError:
         print("Memory Error!")
 
+# Prints a visual of the steps/actions in a solution from an initial puzzle state
 def printSolutionVisual(puzzle, solution):
     sol = solution.extractSolution()
     puzzle.show()

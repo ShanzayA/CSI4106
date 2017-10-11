@@ -3,7 +3,6 @@
 #  Class Node
 # This class represents a node in a tree search
 
-import sys
 import math
 import copy
 

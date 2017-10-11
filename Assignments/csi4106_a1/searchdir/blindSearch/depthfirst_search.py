@@ -11,10 +11,10 @@ def depthfirst_search(initialState):
 
     # Create a frontier stack that will hold the successor nodes.
     # Add the start node to the frontier to start exploring.
-    # Create an empty list to hold the closed nodes (already explored nodes).
+    # Create an empty set to hold the closed nodes (already explored nodes).
     frontier = Stack()
     frontier.push(node)
-    explored = []
+    explored = set()
 
     try:
         # Enter a loop to explore the successor nodes until the goal state is found or no more nodes can be produced.
@@ -24,10 +24,10 @@ def depthfirst_search(initialState):
             node = frontier.pop()
             if node.state.isGoal():
                 return node, len(explored)
-            explored.append(node.state)
+            explored.add(node.state)
             # Generate the successor nodes (possible states from possible actions from current node).
             for child in node.expand():
-                if child.state not in explored: #"Recursion Error", recursion depth problem for node.isRepeated()
+                if not any(child.state.equals(s) for s in explored): #"Recursion Error" (maximum recursion depth exceeded) if using node.isRepeated()
                     frontier.push(child)
     except MemoryError:
         print("Out of memory. Could not continue")
