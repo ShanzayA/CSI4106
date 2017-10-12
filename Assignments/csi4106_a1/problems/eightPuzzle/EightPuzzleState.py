@@ -157,9 +157,9 @@ def inversions(s):
 def randomize(puzzle):
     puzzle = puzzle.shuffle_ran(puzzle, 1)
     puzzle_choice = []
-    for sublist in puzzle.cells:
-        for item in sublist:
-            puzzle_choice.append(item)
+    for item in puzzle.state:
+        #for item in sublist:
+        puzzle_choice.append(item) #EightPuzzleState was made with only 1-D array, not array of array
     return puzzle, puzzle_choice
 
 #######  SEARCH ###########################
