@@ -87,7 +87,6 @@ class PriorityQueue:
 class Stack:
     # initializes the data structure
     def __init__(self):
-        #self.s = []
         # Using deque instead of list to implement since it has higher performance when appending O(1) vs O(n).
         # In fact this could be used for the other data structures as well.
         self.s = deque()
@@ -98,7 +97,6 @@ class Stack:
 
     # returns a boolean indicating whether the current data structure is empty or not
     def isEmpty(self):
-        #return self.s == []
         return len(self.s) == 0
 
     # add the element item to the current data structure
