@@ -128,6 +128,14 @@ class EightPuzzleState(State):
             distance += abs(tilePosition[0] - goalPosition[0]) + abs(tilePosition[1] - goalPosition[1])
         return distance
 
+    def shuffle_ran(self, board, moves):
+        newState = board
+        if moves == 100:
+            return newState
+        else:
+            newState.executeAction(random.choice(list(board.possibleActions())))
+            moves = moves + 1
+            return self.shuffle_ran(newState, moves)
 
 ####################### SOLVABILITY ###########################
 
@@ -136,7 +144,8 @@ def issolvable(puzzle):
     print("Puzzle string: ", puzzle_str)
     if inversions(puzzle_str) % 2:
         return False
-    else : return True
+    else:
+        return True
 
 def inversions(s):
     k = s[s != 0]
@@ -152,15 +161,6 @@ def randomize(puzzle):
         for item in sublist:
             puzzle_choice.append(item)
     return puzzle, puzzle_choice
-
-    def shuffle_ran(self,board, moves):
-        newState = board
-        if moves==100:
-            return newState
-        else:
-            newState.executeAction(random.choice(list(board.possibleActions())))
-            moves= moves+1
-            return self.shuffle_ran(newState, moves)
 
 #######  SEARCH ###########################
 EIGHT_PUZZLE_DATA = [[0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -180,7 +180,6 @@ puzzle.show()
 if not issolvable(puzzle_choice):
     print("NOT SOLVABLE")
 else:
-
     start = timeit.default_timer()
     solution, nbvisited = breadthfirst_search(puzzle)
     stop = timeit.default_timer()
